@@ -9,8 +9,31 @@ bestcam:
 invalid_thumb:
     url: "http://bestc.am/DjxE"
     thumb_url: ""
-    assignment: ds11
+    assignment: today
     photog: joe
     screen_name: joe
     tweeted_at: <%= Time.now %>
+
+bob_photo_1:
+    url: "http://bestc.am/DjxE"
+    thumb_url: "http://s3.amazonaws.com/cjapps/images/141503/thumb.jpg"
+    assignment: ds1
+    photog: bob
+    screen_name: bob
+    tweeted_at: <%= Time.now %>
     
+bob_photo_2:
+    url: "http://bestc.am/DjxE"
+    thumb_url: "http://s3.amazonaws.com/cjapps/images/141503/thumb.jpg"
+    assignment: ds10
+    photog: bob
+    screen_name: bob
+    tweeted_at: <%= Time.now %>
+    
+jane_photo_1:
+    url: "http://bestc.am/DjxE"
+    thumb_url: "http://s3.amazonaws.com/cjapps/images/141503/thumb.jpg"
+    assignment: today
+    photog: jane
+    screen_name: jane
+    tweeted_at: <%= Time.now %>
