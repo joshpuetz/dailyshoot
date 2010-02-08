@@ -21,6 +21,7 @@ class PhotogsController < ApplicationController
       return
     end
     @photos = @photog.photos.with_assignment.paginate(:page => params[:page], :per_page => 30)
+    @missing_assignments = @photog.missing_assignments.paginate(:page => params[:missing_page], :per_page => 9)
     respond_to do |format|
       format.html
       format.xml  { render :xml  => @photog }

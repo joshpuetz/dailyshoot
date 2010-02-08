@@ -12,9 +12,20 @@ class Photog < ActiveRecord::Base
   
   has_many :assignments, :through => :photos
   # Annoyingly, generated counter_sql doesn't work when a subselect is specified so we must explicitly provide one
-  has_many :missing_assignments, :class_name => "Assignment", 
+  has_many :missing_assignments, 
+        :class_name => "Assignment", 
         :finder_sql => 'SELECT * FROM assignments WHERE (date <= \'#{Date.today}\' and id NOT IN (SELECT assignment_id FROM photos WHERE photos.photog_id = #{id} )) order by date asc',
-        :counter_sql => 'SELECT count(*) FROM assignments WHERE (date <= \'#{Date.today}\' and id NOT IN (SELECT assignment_id FROM photos WHERE photos.photog_id = #{id} ))'
+        :counter_sql => 'SELECT count(*) FROM assignments WHERE (date <= \'#{Date.today}\' and id NOT IN (SELECT assignment_id FROM photos WHERE photos.photog_id = #{id} ))' do
+          def find(*args)
+            options = args.extract_options!
+            sql = @finder_sql
+
+            sql += sanitize_sql [" LIMIT ?", options[:limit]] if options[:limit]
+            sql += sanitize_sql [" OFFSET ?", options[:offset]] if options[:offset]
+
+            Assignment.find_by_sql(sql)
+          end
+      end
 
   def self.all_by_photos_count
     all(:order => 'photos_count desc')
