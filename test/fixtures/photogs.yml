@@ -1,3 +1,11 @@
 joe:
     screen_name: joe
     profile_image_url: "http://a1.twimg.com/profile_images/254087560/102-20080607_normal.jpg"
+    
+bob:
+    screen_name: bob
+    profile_image_url: "http://a1.twimg.com/profile_images/254087560/102-20080607_normal.jpg"
+
+jane:
+    screen_name: jane
+    profile_image_url: "http://a1.twimg.com/profile_images/254087560/102-20080607_normal.jpg"

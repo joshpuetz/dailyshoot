@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PhotogText < ActiveSupport::TestCase
+class PhotogTest < ActiveSupport::TestCase
 
   test "should use screen_name as the param" do
     assert_equal 'joe', photogs(:joe).to_param
@@ -18,6 +18,18 @@ class PhotogText < ActiveSupport::TestCase
     photog = Photog.with_screen_name(twitter_user.screen_name)
     
     assert photog.new_record?
+  end
+  
+  test "missing_assignments should return assignments photog doesn't have a picture for" do
+    missing_assignments = photogs(:bob).missing_assignments
+    assert missing_assignments.length == 1
+    assert missing_assignments[0] = assignments(:today)
+    
+    missing_assignments = photogs(:jane).missing_assignments
+    assert missing_assignments.length == 2
+    assert missing_assignments.include?(assignments(:ds1))
+    assert missing_assignments.include?(assignments(:ds10))
+    assert !missing_assignments.include?(assignments(:today))    
   end
 
   test "identify with an existing Twitter should find existing record" do

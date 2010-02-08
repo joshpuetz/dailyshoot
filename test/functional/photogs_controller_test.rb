@@ -12,6 +12,7 @@ class PhotogsControllerTest < ActionController::TestCase
   test "show should load photog and render page" do
     get :show, :id => photogs(:joe).to_param
     assert_equal photogs(:joe), assigns(:photog)
+    assert_not_nil assigns(:missing_assignments)
     assert_response :success
     assert_template "photogs/show"
   end
@@ -22,7 +23,7 @@ class PhotogsControllerTest < ActionController::TestCase
     get :index, :format => "xml"
     assert_response :success
     xml = Hash.from_xml(@response.body)
-    assert_equal 1, xml["photogs"].length
+    assert_equal 3, xml["photogs"].length
   end
   
   test "show via API should return photog record" do

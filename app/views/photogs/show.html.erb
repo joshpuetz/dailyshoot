@@ -12,3 +12,23 @@ has tweeted
 <div>
   <%= will_paginate @photos %>
 </div>
+
+<% unless @missing_assignments.empty? %>
+  <div id="second" class="span-22 prepend-1 append-1 last ">
+    <h2><%= pluralize(@photog.missing_assignments.size, 'daily shoot assignment') %> left to do</h2>
+  </div
+  <div class="span-24 prepend-1  last ">
+    <% @missing_assignments.each {|assignment| %>
+      <div class="missing-assignment-rect">
+  	    <div>
+  	      <span class="hash"><%= link_to(assignment.tweet_date, assignment_url(assignment)) %> &bull; 
+  	      <%= link_to("##{assignment.tag}",assignment_url(assignment)) %></span> 
+  	    </div>
+  	    <div class="info"><%= assignment.text %></div>
+  	  </div>
+    <% }%>
+</div>
+  <div>
+    <%= will_paginate @missing_assignments, :param_name => "missing_page" %>
+  </div>
+<% end %>
