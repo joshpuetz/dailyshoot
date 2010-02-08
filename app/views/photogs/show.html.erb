@@ -16,8 +16,8 @@ has tweeted
 <% unless @missing_assignments.empty? %>
   <div id="second" class="span-22 prepend-1 append-1 last ">
     <h2><%= pluralize(@photog.missing_assignments.size, 'daily shoot assignment') %> left to do</h2>
-  </div
-  <div class="span-24 prepend-1  last ">
+  </div>
+  <div id="missing-assignments" class="span-24 prepend-1  last ">
     <% @missing_assignments.each {|assignment| %>
       <div class="missing-assignment-rect">
   	    <div>
