@@ -2,7 +2,7 @@
 <div class="span-22 prepend-1 append-1 last" id="second">
 <h2 style="text-align:center;"><%= link_to(image_tag(@photog.profile_image_url, :size => "45x45", :alt => @photog.screen_name, :class => 'twitter-avatar'), @photog.twitter_url) %> <%= link_to "@#{@photog.screen_name}", @photog.twitter_url %> 
 has tweeted 
-<%= pluralize(@photog.photos.size, 'daily shoot assignment') %></h2>
+<%= pluralize(@photog.photos.size, 'daily shoot assignment') %>, <%= @photog.missing_assignments.length %> left <%= link_to "to-do", todo_photog_path(@photog) %>.</h2>
 </div>
 
 <%= render :partial => 'shared/photowall', 
@@ -13,22 +13,4 @@ has tweeted
   <%= will_paginate @photos %>
 </div>
 
-<% unless @missing_assignments.empty? %>
-  <div id="second" class="span-22 prepend-1 append-1 last ">
-    <h2><%= pluralize(@photog.missing_assignments.size, 'daily shoot assignment') %> left to do</h2>
-  </div>
-  <div id="missing-assignments" class="span-24 prepend-1  last ">
-    <% @missing_assignments.each {|assignment| %>
-      <div class="missing-assignment-rect">
-  	    <div>
-  	      <span class="hash"><%= link_to(assignment.tweet_date, assignment_url(assignment)) %> &bull; 
-  	      <%= link_to("##{assignment.tag}",assignment_url(assignment)) %></span> 
-  	    </div>
-  	    <div class="info"><%= assignment.text %></div>
-  	  </div>
-    <% }%>
-</div>
-  <div>
-    <%= will_paginate @missing_assignments, :param_name => "missing_page" %>
-  </div>
-<% end %>
+

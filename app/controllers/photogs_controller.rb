@@ -21,12 +21,28 @@ class PhotogsController < ApplicationController
       return
     end
     @photos = @photog.photos.with_assignment.paginate(:page => params[:page], :per_page => 30)
-    @missing_assignments = @photog.missing_assignments.paginate(:page => params[:missing_page], :per_page => 9)
     respond_to do |format|
       format.html
       format.xml  { render :xml  => @photog }
       format.json { render :json => @photog }
     end
+  end
+  
+  def todo
+    @photog = Photog.find_by_screen_name(params[:id])
+    @missing_assignments = @photog.missing_assignments.paginate(:page => params[:missing_page], :per_page => 30)
+    
+    unless @photog
+      redirect_to(photogs_url) 
+      return
+    end
+    @photos = @photog.photos.with_assignment.paginate(:page => params[:page], :per_page => 30)
+    respond_to do |format|
+      format.html
+      format.xml  { render :xml  => @missing_assignments }
+      format.json { render :json => @missing_assignments }
+    end
+    
   end
   
 
