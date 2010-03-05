@@ -2,8 +2,12 @@
 <div class="span-22 prepend-1 append-1 last" id="second">
 <h2 style="text-align:center;"><%= link_to(image_tag(@photog.profile_image_url, :size => "45x45", :alt => @photog.screen_name, :class => 'twitter-avatar'), @photog.twitter_url) %> <%= link_to "@#{@photog.screen_name}", @photog.twitter_url %> 
 has tweeted 
-<%= pluralize(@photog.photos.size, 'daily shoot assignment') %>, <%= @photog.missing_assignments.length %> left <%= link_to "to-do", todo_photog_path(@photog) %>.</h2>
+<%= pluralize(@photog.photos.size, 'daily shoot assignment') %></h2>
 </div>
+
+<% if @photog.missing_assignments.length > 0 %>
+  <div class="span-22 prepend-2 last" id="missing_assignment_link">Need some inspiration? <%= link_to "@#{@photog.screen_name}", @photog.twitter_url %> has <%= pluralize(@photog.missing_assignments.length, 'assignment') %> <%= link_to "available", todo_photog_path(@photog) %>.</div>
+<% end %>
 
 <%= render :partial => 'shared/photowall', 
            :locals => {:photos  => @photos, 

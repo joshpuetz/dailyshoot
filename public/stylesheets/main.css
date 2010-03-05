@@ -181,21 +181,12 @@ p {
   color: #333;
 }
 
-.missing-assignment-rect {
-  margin-bottom: 30px; 
-  float: left;
-  width: 310px;
+#missing_assignment_link {
+  margin-top: -15px;
+  margin-bottom: 20px;
+  text-align: right;
 }
 
-.missing-assignment-rect .info {
-  float: left;
-  width: 250px;
-}
-
-.missing-assignment-rect .hash a {
-  font-weight: bold;
-  text-decoration: none;
-}
 
 #allaboutit {
   color: #777;
