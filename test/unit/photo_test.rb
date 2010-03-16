@@ -223,6 +223,15 @@ class PhotoTest < ActiveSupport::TestCase
     assert_photo(tweet, url, thumb, medium)
   end
 
+  test "tweet with twitsnaps URL should assign url and thumb url" do
+    tweet = "@dailyshoot http://twitsnaps.com/full_size.php?img_id=413 #ds11"
+    url   = "http://twitsnaps.com/full_size.php?img_id=413"
+    thumb = "http://twitsnaps.com/share/thumbnail/413_SunriseAug2004.jpg"
+    medium = "http://twitsnaps.com/share/fullphoto/413_SunriseAug2004.jpg"
+    
+    assert_photo(tweet, url, thumb, medium)
+  end
+
   test "tweet with invalid URL should ignore it" do
     tweet = "My first assignment: Water http://bi.. http://bit.ly/6Jp0el"
     url   = "http://www.flickr.com/photos/bg/4131881234/"

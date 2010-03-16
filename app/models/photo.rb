@@ -68,6 +68,7 @@ class Photo < ActiveRecord::Base
       when self.url =~ /snaptweet\.com/: snaptweet
       when self.url =~ /smugmug\.com/: smugmug
       when self.url =~ /twitgoo\.com/: twitgoo
+      when self.url =~ /twitsnaps\.com/: twitsnaps
       else [nil, nil]
     end
     self.thumb_url = image_urls[0]
@@ -175,6 +176,18 @@ protected
     return [nil, nil] unless photo_id
       
     flickr_with_photo_id(photo_id)
+  end
+
+  def twitsnaps
+    if self.url =~ %r(img_id=([\d]+)$)
+      photo_id = $1
+    else
+      return [nil, nil]
+    end
+
+    thumb = open("http://twitsnaps.com/thumb/#{photo_id}") { |f| f.base_uri.to_s }
+    medium = open("http://twitsnaps.com/snap/#{photo_id}") { |f| f.base_uri.to_s }
+    [thumb, medium]
   end
 
   # http://farm{farm-id}.static.flickr.com/{server-id}/{photo-id}_{secret}.jpg.
