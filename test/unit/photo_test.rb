@@ -232,6 +232,15 @@ class PhotoTest < ActiveSupport::TestCase
     assert_photo(tweet, url, thumb, medium)
   end
 
+  test "tweet with 365project URL should assign url and thumb url" do
+    tweet = "@dailyshoot http://365project.org/mom2preteens/365/2010-03-14 #ds11"
+    url   = "http://365project.org/mom2preteens/365/2010-03-14"
+    thumb = "http://media.365project.org/1/116876_defhimoprx_sq.jpg"
+    medium = "http://media.365project.org/1/116876_defhimoprx_m.jpg"
+    
+    assert_photo(tweet, url, thumb, medium)
+  end
+
   test "tweet with invalid URL should ignore it" do
     tweet = "My first assignment: Water http://bi.. http://bit.ly/6Jp0el"
     url   = "http://www.flickr.com/photos/bg/4131881234/"
