@@ -49,6 +49,8 @@ class Photo < ActiveRecord::Base
       when self.url =~ /snaptweet/: "SnapTweet"
       when self.url =~ /smugmug/: "SmugMug"
       when self.url =~ /twitgoo/: "Twitgoo"
+      when self.url =~ /twitsnaps\.com/: "TwitSnaps"
+      when self.url =~ /365project\.org/: "365 Project"
       else "site"
     end
   end
