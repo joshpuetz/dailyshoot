@@ -12,3 +12,9 @@ has tweeted
 <div>
   <%= will_paginate @photos %>
 </div>
+
+<% if admin? -%>
+<div>
+  <%= link_to 'logout', logout_url %>
+</div>
+<% end -%>
