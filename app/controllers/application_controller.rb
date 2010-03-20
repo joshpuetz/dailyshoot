@@ -29,19 +29,5 @@ protected
       format.any(:xml, :json)  { head :not_found }
     end
   end
-  
-private
-
-  def ensure_proper_protocol
-    return true if ssl_allowed?
-
-    if ssl_required? && !request.ssl?
-      redirect_to "https://dailyshoot.heroku.com" + request.request_uri
-      return false
-    elsif request.ssl? && !ssl_required?
-      redirect_to "http://dailyshoot.com" + request.request_uri
-      return false
-    end
-  end
 
 end
