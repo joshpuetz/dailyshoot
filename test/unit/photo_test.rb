@@ -240,6 +240,15 @@ class PhotoTest < ActiveSupport::TestCase
     
     assert_photo(tweet, url, thumb, medium)
   end
+  
+  test "tweet with zenfolio URL should assign url and thumb url" do
+    tweet = "@dailyshoot http://madeleine.zenfolio.com/p481334483/h187d9b98 #ds11"
+    url   = "http://madeleine.zenfolio.com/p481334483/h187d9b98"
+    thumb = "http://www.zenfolio.com//img/v7/p410885016-1.jpg"
+    medium = "http://www.zenfolio.com//img/v7/p410885016-2.jpg"
+    
+    assert_photo(tweet, url, thumb, medium)
+  end
 
   test "tweet with invalid URL should ignore it" do
     tweet = "My first assignment: Water http://bi.. http://bit.ly/6Jp0el"

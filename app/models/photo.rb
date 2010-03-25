@@ -51,6 +51,7 @@ class Photo < ActiveRecord::Base
       when self.url =~ /twitgoo/: "Twitgoo"
       when self.url =~ /twitsnaps\.com/: "TwitSnaps"
       when self.url =~ /365project\.org/: "365 Project"
+      when self.url =~ /zenfolio\.com/: "Zenfolio"
       else "site"
     end
   end
@@ -72,6 +73,7 @@ class Photo < ActiveRecord::Base
       when self.url =~ /twitgoo\.com/: twitgoo
       when self.url =~ /twitsnaps\.com/: twitsnaps
       when self.url =~ /365project\.org/: three_sixty_five_project
+      when self.url =~ /zenfolio\.com/: zenfolio
       else [nil, nil]
     end
     self.thumb_url = image_urls[0]
@@ -197,6 +199,31 @@ protected
     doc = Nokogiri::HTML(open(self.url))
     medium = doc.css('.media-content a img').first['src']    
     thumb = medium.gsub(/(_m\.)/, '_sq.')
+
+    [thumb, medium]
+  end
+  
+  def zenfolio
+    if self.url =~ %r(h([0-9a-f]+)$)
+      photo_id = $1.to_i(16)
+    else
+      return [nil, nil]
+    end
+    
+    api_url = "http://www.zenfolio.com/api/1.2/zfapi.asmx/LoadPhoto?photoId="
+    user_agent = "Daily Shoot Submission Parser for Zenfolio"
+    
+    doc = Nokogiri::HTML(open(api_url + photo_id.to_s, 'User-Agent' => user_agent))
+    
+    if doc.xpath("/photo")
+      url_core = doc.xpath('//urlcore').first.text
+
+      base_image_url = "http://www.zenfolio.com/#{url_core}"
+      thumb = "#{base_image_url}-1.jpg"
+      medium = "#{base_image_url}-2.jpg"
+    else
+      raise "Zenfolio API failed"
+    end
 
     [thumb, medium]
   end
