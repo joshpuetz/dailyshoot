@@ -7,7 +7,10 @@ ActionController::Routing::Routes.draw do |map|
                 :collection => { :upcoming => :get },
                 :member => { :reorder => :get }
                 
-  map.resources :mentions, :member => { :parse => :post }
+  map.resources :mentions, 
+                :member => { :parse => :post },
+                :collection => { :bulk_destroy => :post}
+                
   map.resources :photos, :member => { :regenerate => :post }
   map.resources :photogs
   map.resource  :session

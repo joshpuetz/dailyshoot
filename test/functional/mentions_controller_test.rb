@@ -92,7 +92,15 @@ class MentionsControllerTest < ActionController::TestCase
     assert_difference('Mention.count', -1) do
       delete :destroy, :id => mentions(:one).to_param
     end
-    assert_redirected_to mentions_path
+    assert_redirected_to mentions_url
+  end
+  
+  test "bulk destroy should remove mention and redirect" do
+    login_admin
+    assert_difference('Mention.count', -2) do
+      delete :bulk_destroy, :mention_ids => [mentions(:one).id, mentions(:pending).id]
+    end
+    assert_redirected_to mentions_url
   end
   
 end

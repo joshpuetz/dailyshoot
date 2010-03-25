@@ -3,16 +3,24 @@
 </div>
 
 <div class="span-22 prepend-1 append-1 last">
+<% form_tag bulk_destroy_mentions_url do -%>
+<p>
+  <%= submit_tag 'Delete All Checked' %> 
+</p>
 <table>
 <% @mentions.each do |mention| -%>
   <tr>
-    <td><%= link_to mention.tweeted_at.to_s(:tweet_date), mention %>:</td>
-    <td><%= link_to_tweet mention %>
+    <td><%= check_box_tag "mention_ids[]", mention.id %></td>
     <td><%= auto_link mention.text %></td>
     <td><%= link_to 'Edit', edit_mention_path(mention) %></td>
     <td><%= link_to "Reparse", parse_mention_path(mention), :method => :post %></td>
-    <td><%= link_to 'Destroy', mention, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to_tweet mention %>
+    <td><%= link_to mention.tweeted_at.to_s(:tweet_date), mention %></td>
   </tr>
 <% end -%>
 </table>
+  <p>
+    <%= submit_tag 'Delete All Checked' %> 
+  </p>
+<% end -%>
 </div>

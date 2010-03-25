@@ -42,4 +42,9 @@ class MentionsController < ApplicationController
     redirect_to mentions_url
   end
   
+  def bulk_destroy
+    Mention.destroy_all(:id => params[:mention_ids])
+    redirect_to mentions_url
+  end
+  
 end
