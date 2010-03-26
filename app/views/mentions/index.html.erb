@@ -2,6 +2,7 @@
 <h2><%= @mentions.size %> Pending Mentions</h2>
 </div>
 
+<% if @mentions.any? -%>
 <div class="span-22 prepend-1 append-1 last">
 <% form_tag bulk_destroy_mentions_url do -%>
 <p>
@@ -24,3 +25,4 @@
   </p>
 <% end -%>
 </div>
+<% end -%>

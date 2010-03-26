@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'welcome'
   map.connect 'supported-sites', :controller => 'welcome', :action => 'services'
+  map.connect 'faq', :controller => 'welcome', :action => 'faq'
 
   map.resources :assignments, 
                 :has_many => :photos, 

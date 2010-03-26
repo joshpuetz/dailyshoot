@@ -4,5 +4,6 @@ ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS.merge!(
 
 ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
   :at => "%Y\/%m\/%d %H:%M",
-  :tweet_date => "%Y\/%m\/%d"
+  :tweet_date => "%Y\/%m\/%d",
+  :tweet_date_short => "%m\/%d"
 )

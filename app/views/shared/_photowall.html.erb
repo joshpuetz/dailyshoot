@@ -2,7 +2,7 @@
 <% photos.in_groups_of(10).each do |row| -%>
 	<div class="row">
 	<% row.each do |photo| -%>
-		<% next if photo == nil -%>
+		<% next unless photo -%>
 		<div class="photo-thumb <%= hover_menu_class(caption) %>">
 		  <% if admin? && caption == 'assignment' -%>
 		    <%= render :partial => 'shared/admin_actions', :locals => {:photo => photo} %>
@@ -10,15 +10,15 @@
 		  <%= photo_thumb(photo) %>
 			<div class="photo-caption">
 			  <% if caption == 'assignment' -%>
-				  <%= link_to("#{photo.tweeted_at.to_s(:tweet_date)} ##{photo.assignment_tag}", 
+				  <%= link_to("#{photo.tweeted_at.to_s(:tweet_date_short)} ##{photo.assignment_tag}", 
 				              assignment_url(photo.assignment_position)) %>
 			  <% else -%>
 			  	<%= link_to photo.photog_screen_name, 
 				              photog_url(photo.photog_screen_name) %>
 			  <% end -%>
-			</div> <%# /photo-caption %>
-		</div> <%# /photo-thumb %>
+			</div>
+		</div>
 	<% end -%>
-	</div> <%# /row %>
+	</div>
 <% end -%>
-</div> <%# /photowall %>
+</div>
