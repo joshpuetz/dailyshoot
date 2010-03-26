@@ -31,7 +31,7 @@ class Photo < ActiveRecord::Base
     end
     urls.each do |url|
       photo = Photo.new(:url => url)
-      if photo.update_image_urls
+      if photo.update_image_urls.compact.any?
         photos << photo
       end
     end
@@ -56,9 +56,7 @@ class Photo < ActiveRecord::Base
     end
   end
     
-  def update_image_urls
-    expand_url if is_compressed 
-    
+  def update_image_urls    
     image_urls = case
       when self.url =~ /bestc\.am/: bestcam
       when self.url =~ /twitpic\.com/: twitpic
@@ -74,19 +72,27 @@ class Photo < ActiveRecord::Base
       when self.url =~ /twitsnaps\.com/: twitsnaps
       when self.url =~ /365project\.org/: three_sixty_five_project
       when self.url =~ /zenfolio\.com/: zenfolio
-      else [nil, nil]
+      else 
+        expanded_url = ShortURL.new(self.url).expand
+        if expanded_url != self.url
+          self.url = expanded_url
+          update_image_urls
+        else
+          []
+        end
     end
-    self.thumb_url = image_urls[0]
-    self.medium_url = image_urls[1]
-    self.thumb_url
+    if image_urls.any?
+      self.thumb_url = image_urls[0]
+      self.medium_url = image_urls[1]
+    else
+      self.thumb_url = nil
+      self.medium_url = nil
+    end
+    [self.thumb_url, self.medium_url]
   rescue => e
     self.thumb_url = '/images/no-photo.png'
     self.medium_url = nil
     raise ThumbRetrievalError.new(e, self.url)
-  end
-  
-  def cache_key
-    self.url
   end
   
   class ThumbRetrievalError < StandardError
@@ -101,14 +107,6 @@ class Photo < ActiveRecord::Base
   end
 
 protected
-
-  def is_compressed
-    self.url =~ /bit\.ly|j\.mp|tr\.im|pnt\.me|short\.to|ping\.fm|ow\.ly|tinyurl\.com|tiny\.cc|twurl\.nl|(is|pic)\.gd|twitpwr\.com|trunc.it/i
-  end
-
-  def expand_url
-    self.url = ShortURL.new(self.url).expand
-  end
     
   def bestcam
     doc = Nokogiri::HTML(open(self.url))

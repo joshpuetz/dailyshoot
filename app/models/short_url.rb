@@ -6,6 +6,7 @@
 require 'open-uri'
 
 class ShortURL
+  
   attr_accessor :url
   
   def initialize(url)
@@ -22,7 +23,6 @@ class ShortURL
         uri = f.base_uri.to_s
       end
     rescue OpenURI::HTTPError => e
-      p [uri, e]
       if prev_uri != uri && tries < 2
         tries += 1
         uri.gsub!(/[^\w]$/,'')
