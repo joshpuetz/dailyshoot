@@ -38,7 +38,7 @@ module ApplicationHelper
               :title => "", :class => "", :rel => "nofollow", :popup => true)
 	  else	
 	    twitter_link = new_window_link("http://twitter.com/#{photo.photog_screen_name}", "@#{photo.photog_screen_name}")    
-	    original_link = new_window_link(photo.url, photo.service_name)    
+	    original_link = new_window_link(photo.url, photo.service[:name])    
 	    title = html_escape("Photo by #{twitter_link} &bull; View original on #{original_link}")
 	    
 	    link_to(thumb_image, photo.medium_url, 

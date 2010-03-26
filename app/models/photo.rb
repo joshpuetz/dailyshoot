@@ -38,48 +38,51 @@ class Photo < ActiveRecord::Base
     photos
   end
   
-  def service_name
+  def service
     case
-      when self.url =~ /bestc\.am/: "The Best Camera"
-      when self.url =~ /twitpic/: "TwitPic"
-      when self.url =~ /tweetphoto/: "TweetPhoto"
-      when self.url =~ /yfrog/: "yFrog"
-      when self.url =~ /flic/: "Flickr"
-      when self.url =~ /imgur\.com/: imgur
-      when self.url =~ /snaptweet/: "SnapTweet"
-      when self.url =~ /smugmug/: "SmugMug"
-      when self.url =~ /twitgoo/: "Twitgoo"
-      when self.url =~ /twitsnaps\.com/: "TwitSnaps"
-      when self.url =~ /365project\.org/: "365 Project"
-      when self.url =~ /zenfolio\.com/: "Zenfolio"
-      else "site"
+      when self.url =~ /bestc\.am/
+        {:name => "The Best Camera", :handler => :bestcam }
+      when self.url =~ /twitpic\.com/
+        {:name => "TwitPic", :handler => :twitpic }
+      when self.url =~ /tweetphoto\.com/
+        {:name => "TweetPhoto", :handler => :tweetphoto }
+      when self.url =~ /yfrog\.com/
+        {:name => "yFrog", :handler => :yfrog }
+      when self.url =~ /farm\d\.static\.flickr\.com/
+        {:name => "Flickr", :handler => :flickr_static }
+      when self.url =~ /flickr\.com/
+        {:name => "Flickr", :handler => :flickr }
+      when self.url =~ /flic\.kr/
+        {:name => "Flickr", :handler => :flickr }
+      when self.url =~ /imgur\.com/
+        {:name => "imgur", :handler => :imgur }
+      when self.url =~ /snaptweet\.com/
+        {:name => "SnapTweet", :handler => :snaptweet }
+      when self.url =~ /smugmug\.com/
+        {:name => "SmugMug", :handler => :smugmug }
+      when self.url =~ /twitgoo\.com/
+        {:name => "Twitgoo", :handler => :twitgoo }
+      when self.url =~ /twitsnaps\.com/
+        {:name => "TwitSnaps", :handler => :twitsnaps }
+      when self.url =~ /zenfolio\.com/
+        {:name => "Zenfolio", :handler => :zenfolio }
+      when self.url =~ /365project\.org/
+        {:name => "365 Project", :handler => :three_sixty_five_project }
+      else {}
     end
   end
     
   def update_image_urls    
-    image_urls = case
-      when self.url =~ /bestc\.am/: bestcam
-      when self.url =~ /twitpic\.com/: twitpic
-      when self.url =~ /tweetphoto\.com/: tweetphoto
-      when self.url =~ /yfrog\.com/: yfrog
-      when self.url =~ /farm\d\.static\.flickr\.com/: flickr_static
-      when self.url =~ /flickr\.com/: flickr
-      when self.url =~ /flic\.kr/: flickr
-      when self.url =~ /imgur\.com/: imgur
-      when self.url =~ /snaptweet\.com/: snaptweet
-      when self.url =~ /smugmug\.com/: smugmug
-      when self.url =~ /twitgoo\.com/: twitgoo
-      when self.url =~ /twitsnaps\.com/: twitsnaps
-      when self.url =~ /365project\.org/: three_sixty_five_project
-      when self.url =~ /zenfolio\.com/: zenfolio
-      else 
-        expanded_url = ShortURL.new(self.url).expand
-        if expanded_url != self.url
-          self.url = expanded_url
-          update_image_urls
-        else
-          []
-        end
+    image_urls = if service[:handler]
+      send(service[:handler])
+    else 
+      expanded_url = ShortURL.new(self.url).expand
+      if expanded_url != self.url
+        self.url = expanded_url
+        update_image_urls
+      else
+        []
+      end
     end
     if image_urls.any?
       self.thumb_url = image_urls[0]
@@ -128,9 +131,7 @@ protected
     [thumb, medium]
   end
   
-  # http://yfrog.com/4izptj
   def yfrog
-    #thumb = self.url + '.th.jpg'
     if self.url =~ %r(/([\w\d]+)$)
       photo_id = $1
     else
