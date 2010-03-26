@@ -4,7 +4,7 @@ namespace :collect do
   task :tweets => :environment do
     puts "Collecting tweets at #{Time.now}"
     require 'tweet_collector'
-    collector = TweetCollector.new()
+    collector = TweetCollector.new
     collector.debug = true
     collector.run
   end
@@ -16,9 +16,11 @@ namespace :collect do
     require 'fakeweb'
     
     # fake oath access_token and verify credentials
-    FakeWeb.register_uri(:post, 'https://twitter.com:443/oauth/request_token', :body => 'oauth_token=faketoken&oauth_token_secret=faketokensecret')
+    FakeWeb.register_uri(:post, 'https://twitter.com:443/oauth/request_token', 
+                         :body => 'oauth_token=faketoken&oauth_token_secret=faketokensecret')
 
-    FakeWeb.register_uri(:post, 'https://twitter.com:443/oauth/access_token', :body => 'oauth_token=fakeaccesstoken&oauth_token_secret=fakeaccesstokensecret')
+    FakeWeb.register_uri(:post, 'https://twitter.com:443/oauth/access_token', 
+                         :body => 'oauth_token=fakeaccesstoken&oauth_token_secret=fakeaccesstokensecret')
 
     # fake the mentions timeline
     url = 'http://twitter.com:80/statuses/mentions.json'
@@ -26,9 +28,9 @@ namespace :collect do
 
     FakeWeb.register_uri(:get, url, {:body => File.read(file_path)})
 
-    twitter = TwitterAPI.new()
+    twitter = TwitterAPI.new
     
-    collector = TweetCollector.new()
+    collector = TweetCollector.new
     collector.debug = true
 
     count = 0    

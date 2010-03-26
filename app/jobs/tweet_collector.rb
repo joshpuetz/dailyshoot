@@ -11,7 +11,7 @@ class TweetCollector
   	twitter = TwitterAPI.new
     page = 1
     
-    last = Mention.first(:order => 'tweet_id desc')
+    last = Mention.last
     loop do
       @count = 0
       raw_mentions = twitter.mentions(:page => page)
@@ -52,7 +52,7 @@ class TweetCollector
   end
   
   def perform
-	run
+    run
     Delayed::Job.enqueue(self, 0, 10.minutes.from_now)  
   end
    

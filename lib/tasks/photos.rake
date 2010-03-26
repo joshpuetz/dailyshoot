@@ -66,7 +66,7 @@ namespace :photos do
     update_image_urls(photos)
   end
   
-  desc "Fetches the thumb and medium URLs for all yFrog photos"
+  desc "Prints photos with missing image URLs"
   task :missing => :environment do
     Photo.all.each { |p| puts p.url if p.medium_url.nil? }
   end
