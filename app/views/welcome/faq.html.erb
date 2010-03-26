@@ -6,12 +6,105 @@
 	</div>
 </div>
 
-<div class="span-23 prepend-1 last" id="allaboutit">
+<div class="span-23 prepend-1 last" id="exposition">
+  <h4>Which photo sharing services do you support?</h4>
+	<ul style="padding-left: 2em;">
+    <li>
+        Flickr
+    </li>
+    <li>
+        SmugMug
+    </li>
+    <li>
+        SnapTweet
+    </li>
+    <li>
+        The Best Camera
+    </li>
+    <li>
+        TweetPhoto
+    </li>
+    <li>
+        Twitgoo
+    </li>
+    <li>
+        TwitPic
+    </li>
+    <li>
+        TwitSnaps
+    </li>
+    <li>
+        yFrog
+    </li>
+    <li>
+        Zenfolio
+    </li>
+    <li>
+        365 Project
+    </li>
+  </ul>
+  <p>
+	  Using a photo sharing site that's not on the list?
+	  <%= link_to "Let us know!", new_suggestion_url %>
+  </p>
+	<h4>Can I submit URLs shortened with my favorite shortener?</h4>
 	<p>
-	  <strong>Can I?</strong>
+	  You betcha!
 	</p>
+	<h4>I tweeted a link to my photo, but it's not showing up on the site.  What gives?</h4>
 	<p>
-	  Yes, you can!
+	  Double-check that your tweet includes an assignment hashtag in the
+	  form <tt>#dsxxx</tt> (<a href="http://twitter.com/clarkware/status/7427955198">example</a>)
+	  and a URL that resolves to one of the photo sharing sites mentioned above.
 	</p>
-
+	<h4>How often are submissions processed?</h4>
+	<p>
+	  Every 15 minutes the Daily Shoot elves process new tweets mentioning @dailyshoot. When they're done, you'll
+    see a thumbnail of your photo on the front page (if it's recent enough), the assignment page, and your
+    photog page.
+	</p>
+	<h4>How do I navigate through the slideshow?</h4>
+	<p>
+	  Click on any thumbnail to see a medium-size format of the photo. Hover over the photo and you'll get left
+    and right arrows to click. Or simply use the left and right arrow keys to hop through the photos without
+    using the mouse. Pressing the Enter key will take you directly to the original photo on its photo sharing
+    site.
+	</p>
+	<h4>So I can't comment on a photo from within the Daily Shoot site?</h4>
+	<p>
+	  That's correct. We feel commenting should happen on whichever photo sharing site a photographer chooses to
+    use. It's not because we're too lazy to implement it on this site. Rather, we don't want to inadvertently
+    fragment a photographer's commenting community. Flickr users, for example, live for comments!
+	</p>
+	<h4>Why only show 30 photos on any given page?</h4>
+	<p>
+	  Because, in the case of Flickr, we want to abide by the Flickr API Terms of Use which limits the number of
+    photos we can show per page to 30.
+	</p>
+  <h4>Is The Daily Shoot a contest?</h4>
+	<p>
+	  Nope. You won't get any gold stars for doing every assignment, nor will you get demerits if you miss a few
+    days. We're just here to help you with a little nudge every day. The rest is up to you!
+	</p>
+	<h4>What are the rules?</h4>
+	<p>
+	  This is your creative work - there are no rules.
+	</p>
+	<h4>Can I submit previously-taken photos from my collection?</h4>
+	<p>
+	  We won't stop you, but responding to today's assignment with a photo from
+	  last year's summer vacation doesn't really help you grow as a photographer.
+	  The whole point of The Daily Shoot is to encourage you to
+	  get out there and make something new and fresh every day!
+	</p>
+	<h4>Can I submit more than one photo per assignment?</h4>
+	<p>
+	  You can, but we'd suggest you submit your <em>best</em> photo for each assignment.
+	  Choosing your best exercises your editing skills, and that's valuable, too.
+	</p>
+	<h4>Are you looking for assignment suggestions?</h4>
+	<p>
+	  We thought you'd never ask.
+	  <%= link_to "Suggest away!", new_suggestion_url %>
+	</p>
 </div>

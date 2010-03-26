@@ -15,7 +15,7 @@
 <%= render :partial => 'shared/photowall', 
            :locals => {:photos => @photos, :caption => 'photog'} %>
 
-<div class="span-24 last" id="allaboutit">
+<div class="span-24 last" id="exposition">
 	<div class="span-22 prepend-1 append-1 last" id="stats">
 		<div class="count">
 		  <%= link_to "#{@photog_count} photographers", photogs_url %> 
@@ -47,7 +47,8 @@
       </li>
       <li>
         <p>
-          When you make a photo for the assignment you want to share, simply upload it to one of the <%= link_to "supported photo sharing sites", :controller => "welcome", :action => "services" %>.
+          When you make a photo for the assignment you want to share, simply upload it to one of the 
+          <%= link_to "supported photo sharing sites", faq_url %>.
         </p>
       </li>
       <li>
@@ -64,10 +65,6 @@
         
 		<p>That's it. There aren't any other rules. You aren't going to get demerits if you miss a few days, nor will you get gold stars for doing every assignment. We're just here to help you with a little nudge every day. The rest is up to you!</p>
 
-		<p>
-		  Have an assignment suggestion? 
-		  <%= link_to "Let us know!", new_suggestion_url %>
-    </p>
 	</div>
 
 	<div class="span-8 prepend-1 append-1 last" id="about">
@@ -79,5 +76,11 @@
 
 		<p>Some of the code that makes this site hum along was written by <a href="http://twitter.com/ujh">Urban Hafner</a> and <a href="http://twitter.com/patricklenz">Patrick Lenz</a>. The Daily Shoot website runs on <a href="http://heroku.com/">Heroku</a> and is underwritten by <a href="http://luma-labs.com">Luma Labs</a>.</p>
 
+    <h3>Need Help?</h3>
+    <p>
+      Start by checking out the <%= link_to "frequently asked questions", faq_url %>.
+		  Have an assignment suggestion or comment? 
+		  <%= link_to "Let us know!", new_suggestion_url %>
+    </p>
 	</div>
 </div>

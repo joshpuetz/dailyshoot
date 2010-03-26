@@ -12,7 +12,7 @@ class WelcomeController < ApplicationController
     @assignment_count = Assignment.published.count
   end
   
-  def services
+  def faq
   end
   
 end
