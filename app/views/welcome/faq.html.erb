@@ -6,7 +6,9 @@
 	</div>
 </div>
 
-<div class="span-23 prepend-1 last" id="exposition">
+<div class="span-24 last" id="exposition">
+
+<div class="span-10 prepend-1 append-2">
   <h4>Which photo sharing services do you support?</h4>
 	<ul style="padding-left: 2em;">
     <li>
@@ -63,24 +65,19 @@
     see a thumbnail of your photo on the front page (if it's recent enough), the assignment page, and your
     photog page.
 	</p>
-	<h4>How do I navigate through the slideshow?</h4>
-	<p>
-	  Click on any thumbnail to see a medium-size format of the photo. Hover over the photo and you'll get left
-    and right arrows to click. Or simply use the left and right arrow keys to hop through the photos without
-    using the mouse. Pressing the Enter key will take you directly to the original photo on its photo sharing
-    site.
-	</p>
-	<h4>So I can't comment on a photo from within the Daily Shoot site?</h4>
-	<p>
-	  That's correct. We feel commenting should happen on whichever photo sharing site a photographer chooses to
-    use. It's not because we're too lazy to implement it on this site. Rather, we don't want to inadvertently
-    fragment a photographer's commenting community. Flickr users, for example, live for comments!
-	</p>
 	<h4>Why only show 30 photos on any given page?</h4>
 	<p>
 	  Because, in the case of Flickr, we want to abide by the Flickr API Terms of Use which limits the number of
     photos we can show per page to 30.
 	</p>
+	<h4>Are you looking for assignment suggestions?</h4>
+	<p>
+	  We thought you'd never ask.
+	  <%= link_to "Suggest away!", new_suggestion_url %>
+	</p>
+	</div>
+	
+	<div class="span-10 append-1 last">
   <h4>Is The Daily Shoot a contest?</h4>
 	<p>
 	  Nope. You won't get any gold stars for doing every assignment, nor will you get demerits if you miss a few
@@ -102,9 +99,19 @@
 	  You can, but we'd suggest you submit your <em>best</em> photo for each assignment.
 	  Choosing your best exercises your editing skills, and that's valuable, too.
 	</p>
-	<h4>Are you looking for assignment suggestions?</h4>
+	<h4>How do I navigate through the slideshow?</h4>
 	<p>
-	  We thought you'd never ask.
-	  <%= link_to "Suggest away!", new_suggestion_url %>
+	  Click on any thumbnail to see a medium-size format of the photo. Hover over the photo and you'll get left
+    and right arrows to click. Or simply use the left and right arrow keys to hop through the photos without
+    using the mouse. Pressing the Enter key will take you directly to the original photo on its photo sharing
+    site.
 	</p>
+	<h4>So I can't comment on a photo from within the Daily Shoot site?</h4>
+	<p>
+	  That's correct. We feel commenting should happen on whichever photo sharing site a photographer chooses to
+    use. It's not because we're too lazy to implement it on this site. Rather, we don't want to inadvertently
+    fragment a photographer's commenting community. Flickr users, for example, live for comments!
+	</p>
+</div>
+
 </div>
