@@ -1,2 +1,6 @@
-* Upgrade to jQuery 1.4
-* Use pagination better
+* Design an API
+* Resolve piggyback SSL certificate issue
+* Add a portfolio URL attribute to Photog
+* Do we wants a mailing list? (Yes! or just maybe)
+* Sign in with Twitter
+* Put logged in name in header using JS callback
