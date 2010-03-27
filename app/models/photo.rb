@@ -299,4 +299,22 @@ protected
     [thumb, medium]
   end
   
+public
+
+  def to_xml(options={})
+    default_serialization_options(options)
+    super(options)
+  end
+
+  def to_json(options={})
+    default_serialization_options(options)
+    super(options)
+  end
+
+protected
+
+  def default_serialization_options(options={})
+    options[:only] = [:tweet_id, :screen_name, :assignment_id, :thumb_url, :medium_url, :tweeted_at]
+  end
+  
 end

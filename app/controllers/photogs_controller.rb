@@ -5,12 +5,6 @@ class PhotogsController < ApplicationController
   def index
     @photogs = Photog.all_by_photos_count.paginate(:page => params[:page], :per_page => 50)
     @photog_count = Photog.count
-    
-    respond_to do |format|
-      format.html
-      format.xml  { render :xml  => @photogs }
-      format.json { render :json => @photogs }
-    end
   end
   
   def show
@@ -22,13 +16,6 @@ class PhotogsController < ApplicationController
     end
     
     @photos = @photog.photos.with_assignment.paginate(:page => params[:page], :per_page => 30)
-        
-    respond_to do |format|
-      format.html
-      format.xml  { render :xml  => @photog }
-      format.json { render :json => @photog }
-    end
   end
   
-
 end

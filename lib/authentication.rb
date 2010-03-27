@@ -21,11 +21,18 @@ module Authentication
         save_location
         redirect_to new_session_url
       end
+    end 
+  end
+  
+  def api_user_required
+    return if current_user
+      
+    respond_to do |format| 
       format.any(:json, :xml) do
         if user = authenticate_from_basic_auth
           session[:user_id] = user.id
         else
-          request_http_basic_authentication 'Web Password'
+          request_http_basic_authentication 'API Password'
         end
       end
     end 

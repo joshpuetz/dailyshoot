@@ -10,11 +10,7 @@ class PhotosController < ApplicationController
     end
     @photos = @assignment.photos.with_photog.paginate(:page => params[:page], :per_page => 30)
     
-    respond_to do |format|
-      format.html { render :template => "assignments/show" }
-      format.xml  { render :xml  => @photos }
-      format.json { render :json => @photos }
-    end
+    render :template => "assignments/show"
   end
   
   def destroy
@@ -22,11 +18,8 @@ class PhotosController < ApplicationController
     @photog = @photo.photog
     @photo.destroy
 
-    respond_to do |format|
-      flash[:notice] = 'Photo was successfully deleted.'
-      format.html { redirect_to @photog }
-      format.any(:xml, :json)  { head :ok }
-    end
+    flash[:notice] = 'Photo was successfully deleted.'
+    redirect_to @photog
   end
   
   def regenerate

@@ -26,4 +26,20 @@ class Photog < ActiveRecord::Base
     self.screen_name
   end
   
+  def to_xml(options={})
+    default_serialization_options(options)
+    super(options)
+  end
+
+  def to_json(options={})
+    default_serialization_options(options)
+    super(options)
+  end
+
+protected
+
+  def default_serialization_options(options={})
+    options[:only] = [:id, :screen_name, :profile_image_url, :photos_count]
+  end
+    
 end

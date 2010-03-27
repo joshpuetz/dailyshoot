@@ -37,21 +37,4 @@ class PhotosControllerTest < ActionController::TestCase
     assert_redirected_to photog_url(photos(:invalid_thumb).photog)
   end
   
-  # === API tests ===
-
-  test "index via API should return photos" do
-    get :index, :id => assignments(:ds10).to_param, :format => "xml"
-    assert_response :success
-    xml = Hash.from_xml(@response.body)
-    assert_equal 1, xml["photos"].length
-  end
-  
-  test "destroy via API should remove photo and respond with 200" do
-    login_admin
-    assert_difference "Photo.count", -1 do
-      delete :destroy, :id => photos(:bestcam).to_param, :format => "xml"
-      assert_response :success
-    end
-  end
-  
 end

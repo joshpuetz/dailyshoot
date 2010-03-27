@@ -16,20 +16,4 @@ class PhotogsControllerTest < ActionController::TestCase
     assert_template "photogs/show"
   end
   
-  # === API tests ===
-
-  test "index via API should return photogs" do
-    get :index, :format => "xml"
-    assert_response :success
-    xml = Hash.from_xml(@response.body)
-    assert_equal 1, xml["photogs"].length
-  end
-  
-  test "show via API should return photog record" do
-    get :show, :id => photogs(:joe).screen_name, :format => "xml"
-    assert_response :success
-    xml = Hash.from_xml(@response.body)
-    assert_equal photogs(:joe).id, xml["photog"]["id"]
-  end
-  
 end

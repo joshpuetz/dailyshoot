@@ -25,8 +25,15 @@ ActionController::Routing::Routes.draw do |map|
     mobile.mobile_assignment 'mobile/assignment/:id', 
                              :action => 'assignment'
   end
+  
+  # API
+  
+  map.namespace(:api) do |api| 
+    api.resources :assignments
+    api.resources :photogs
+  end
 
-  map.connect 'twitter/:action', :controller => 'twitter'
+  #map.connect 'twitter/:action', :controller => 'twitter'
 
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

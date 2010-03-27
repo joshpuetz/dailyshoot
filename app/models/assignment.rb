@@ -84,5 +84,21 @@ class Assignment < ActiveRecord::Base
       end
     end 
   end
-    
+  
+  def to_xml(options={})
+    default_serialization_options(options)
+    super(options)
+  end
+
+  def to_json(options={})
+    default_serialization_options(options)
+    super(options)
+  end
+  
+protected
+
+  def default_serialization_options(options={})
+    options[:only] = [:id, :date, :tag, :text, :photos_count]
+  end
+  
 end

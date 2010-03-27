@@ -13,6 +13,10 @@ class ActiveSupport::TestCase
     login! :admin
   end
   
+  def login_api
+    login_api! :non_admin, 'testing'
+  end
+  
   def fixture_file(filename)
     return '' if filename == ''
     file_path = File.expand_path(File.dirname(__FILE__) + '/fixtures/' + filename)
@@ -52,10 +56,10 @@ private
     @request.session[:user_id] = nil
   end
 
-  def api_login!(login, password)
+  def login_api!(login, password)
     logout!
     @user = Symbol === login ? users(login) : login
-    token = Base64.encode64("#{@user.user_name}:#{password}")
+    token = Base64.encode64("#{@user.login}:#{password}")
     @request.env['HTTP_AUTHORIZATION'] = "Basic: #{token}"
   end
 
