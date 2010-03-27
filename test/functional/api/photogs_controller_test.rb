@@ -2,7 +2,13 @@ require 'test_helper'
 
 class Api::PhotogsControllerTest < ActionController::TestCase
   
-  test "index via API should return photogs" do
+  test "index without login should be unauthorized" do    
+    get :index, :format => "xml"
+    
+    assert_response 401
+  end
+  
+  test "index should serialize photogs" do
     login_api
     
     get :index, :format => "xml"
@@ -15,7 +21,7 @@ class Api::PhotogsControllerTest < ActionController::TestCase
   end
 
 
-  test "show via API should return photog record" do
+  test "show should serialize photog record" do
     login_api
     
     get :show, :id => photogs(:joe).screen_name, :format => "xml"

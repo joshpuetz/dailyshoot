@@ -2,7 +2,13 @@ require 'test_helper'
 
 class Api::AssignmentsControllerTest < ActionController::TestCase
   
-  test "index via API should return assignments" do
+  test "index without login should be unauthorized" do    
+    get :index, :format => "xml"
+    
+    assert_response 401
+  end
+  
+  test "index should serialize assignments" do
     login_api
     
     get :index, :format => "xml"
@@ -14,7 +20,7 @@ class Api::AssignmentsControllerTest < ActionController::TestCase
     assert_equal 3, xml["assignments"].length
   end
   
-  test "show via API should return assignment record" do
+  test "show should serialize assignment record" do
     login_api
     
     get :show, :id => assignments(:ds10).id, :format => "xml"
