@@ -42,7 +42,7 @@ If you've got the mojo to deploy the app to Heroku, you'll want to do the follow
 
 Then to deploy:
 
-</b>$ git push heroku master</b>
+<b>$ git push heroku master</b>
 
 Heroku will do it's thing.
 
