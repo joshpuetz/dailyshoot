@@ -1,4 +1,4 @@
-<h1> The Daily Shoot Website</h1>
+# The Daily Shoot Website
 
 This is the website for The Daily Shoot. It's currently envisioned to be a lightweight application that will both help us run the Daily Shoot and manage assignments as well as display what followers of the Daily Shoot submit to Twitter as image replies.
 
@@ -6,43 +6,40 @@ The Daily Shoot is all about helping people get their mojo on with their camera 
 
 The "We" here isn't just Mike and Duncan. It's all of us. We don't want this to be Web 2.0 only in the sense that users are generating content. We want to include as much of our community as possible in building this website. Of course, Duncan and Mike will be here curating things and making sure the website lives up to the @dailyshoot goal.
 
-<h2>Initial Wishlist</h2>
+## Initial Wishlist
 
 What do we want to do with this app? Well, as much as we need to. To start out with, it's a simple one page site. That should change soon. Here's a stab at what might be possible:
 
 
-<ul>
+- 1. Daily assignment management. Currently, we're timing the assignments off of cotweet. This is manual and works ok, but what would be better is if we could build up a list of assignements and dates and have the app manage firing those tweets off to Twitter at 9AM Eatern and 3PM Pacific. This would need to be a private admin only function.
 
-<li>1. Daily assignment management. Currently, we're timing the assignments off of cotweet. This is manual and works ok, but what would be better is if we could build up a list of assignements and dates and have the app manage firing those tweets off to Twitter at 9AM Eatern and 3PM Pacific. This would need to be a private admin only function.</li>
+- 2. Daily assignment suggestion form. Let users suggest assignments. The public view of this would be a lightweight form. The backend should be a list of suggestions, a mechanism to edit those and add 'em to the assignment queue or delete.
 
-<li>2. Daily assignment suggestion form. Let users suggest assignments. The public view of this would be a lightweight form. The backend should be a list of suggestions, a mechanism to edit those and add 'em to the assignment queue or delete.</li>
+- 3. Daily assignment photo browser. This is the biggie. What we'd like to see is the ability to scroll back and forth through the assignments and see all the photos that people replied to the assignment tweet with. Obviously, they can post any URL, but what might be nice is if we can sort out how to make a thumbnail for each URL (yfrog, flickr, bestc.am, etc), we do that and show a grid for each day's assignment.
 
-<li>3. Daily assignment photo browser. This is the biggie. What we'd like to see is the ability to scroll back and forth through the assignments and see all the photos that people replied to the assignment tweet with. Obviously, they can post any URL, but what might be nice is if we can sort out how to make a thumbnail for each URL (yfrog, flickr, bestc.am, etc), we do that and show a grid for each day's assignment.</li>
+- 4. ??? What do you think?
 
-<li>4. ??? What do you think?</li>
 
-</ul>
-
-<h2> Getting Started</h2>
+## Getting Started
 
 A few starting points:
-<ul>
-<li>1. This is a Rails app. You'll have to know Rails to help us out. It's not a high bar, but it is a bar.</li>
-<li>2. We want to keep this app data-dependency light. It should be possible to work on most parts of this application without having access to Heroku where the website is deployed.</li>
-<li>3. If you build something cool, let Duncan or Mike know with a pull request via github. If it fills the vision of what we're after, we'll get it pulled in and deployed.</li>
-<li>4. ???</li>
-</ul>
+
+- 1. This is a Rails app. You'll have to know Rails to help us out. It's not a high bar, but it is a bar.
+- 2. We want to keep this app data-dependency light. It should be possible to work on most parts of this application without having access to Heroku where the website is deployed.
+- 3. If you build something cool, let Duncan or Mike know with a pull request via github. If it fills the vision of what we're after, we'll get it pulled in and deployed.
+- 4. ???
 
 
-<h2> Heroku Deployment</h2>
+
+## Heroku Deployment
 
 If you've got the mojo to deploy the app to Heroku, you'll want to do the following:
 
-<b>$ git remote add heroku [EMAIL PROTECTED]:dailyshoot.git</b>
+``` $ git remote add heroku [EMAIL PROTECTED]:dailyshoot.git ```
 
 Then to deploy:
 
-<b>$ git push heroku master</b>
+``` $ git push heroku master ```
 
 Heroku will do it's thing.
 
